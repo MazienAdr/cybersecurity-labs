@@ -1,38 +1,35 @@
-# 🛡️ Cybersecurity Labs
+# TP6 — PKI & HTTPS
 
-> Travaux pratiques de sécurité offensive et défensive réalisés dans le cadre de ma formation d'ingénieur en **Sécurité & Réseaux** à l'EFREI Paris.
+Mise en place d'une infrastructure à clés publiques (PKI) complète et déploiement d'un serveur HTTPS sécurisé.
 
-Ce dépôt regroupe une série de laboratoires pratiques couvrant la cryptographie, les attaques réseau, l'infrastructure à clés publiques (PKI) et les tunnels VPN. Chaque TP contient un compte rendu détaillé (PDF) et les captures associées.
+## Objectifs
 
----
+- Examiner la chaîne de certification d'un certificat existant
+- Construire une **Autorité de Certification (CA)** avec OpenSSL
+- Générer et signer des certificats serveur
+- Configurer **Apache en HTTPS** avec redirection automatique HTTP → HTTPS
 
-## 📂 Contenu
+## Manipulations réalisées
 
-| TP | Thème | Compétences | Outils |
-|----|-------|-------------|--------|
-| [**TP3**](./TP3-hashing-crypto) | Hachage & Cryptographie | Hachage, attaques par dictionnaire/brute force, salt, collision MD5, GPG | Python, Linux, CeWL, bcrypt, Thunderbird, GPG |
-| [**TP4**](./TP4-mitm-arp-dns) | Attaques réseau (MITM) | ARP spoofing, Man-in-the-Middle, DNS poisoning | Kali Linux, arpspoof, Ettercap, Wireshark |
-| [**TP6**](./TP6-pki-https) | PKI & HTTPS | Autorité de certification, certificats X.509, TLS | OpenSSL, Apache, Firefox |
-| [**TP7**](./TP7-openvpn) | Tunnel VPN | OpenVPN, PKI dédiée, Diffie-Hellman | OpenVPN, Easy-RSA, Kali, Ubuntu |
+| Étape | Description |
+|-------|-------------|
+| Examen certificat | Analyse de la chaîne SSL et du contenu d'un certificat X.509 |
+| Création de la CA | Autorité de certification auto-signée (validité 10 ans) |
+| CSR serveur | Génération de la demande de signature Apache |
+| Signature | Signature du certificat serveur par la CA |
+| Export PKCS#12 | Conditionnement clé + certificat |
+| Configuration Apache | Activation SSL, écoute sur 443 |
+| Import navigateur | Installation de la CA et du certificat client dans Firefox |
+| Redirection | HTTP → HTTPS automatique |
 
----
+## Concepts clés
 
-## 🎯 Compétences démontrées
+- **Chaîne de confiance** : CA racine → certificat serveur
+- **Certificats X.509** : structure, validité, usage
+- **TLS** : établissement d'une connexion chiffrée
 
-- **Cryptographie appliquée** : fonctions de hachage, chiffrement symétrique/asymétrique, signatures
-- **Sécurité offensive** : interception de trafic, usurpation ARP, empoisonnement DNS
-- **Sécurité défensive** : mise en place de PKI, certificats, tunnels chiffrés
-- **Analyse réseau** : capture et inspection de paquets avec Wireshark
+## Outils
 
----
+`OpenSSL` · `Apache` · `Firefox` · `Linux`
 
-## ⚠️ Avertissement
-
-Ces travaux ont été réalisés dans un **environnement de laboratoire isolé** (machines virtuelles), à des fins strictement **éducatives**. Toute utilisation des techniques présentées en dehors d'un cadre légal et autorisé est interdite.
-
----
-
-## 👤 Auteur
-
-**Mazien Adhar** — Étudiant Ingénieur Cybersécurité & Réseaux, EFREI Paris
-[LinkedIn](https://www.linkedin.com/in/mazien-adhar/)
+📄 **[Compte rendu complet (PDF)](./rapport-tp6.pdf)**
